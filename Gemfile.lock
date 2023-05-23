@@ -1,0 +1,43 @@
+PATH
+  remote: .
+  specs:
+    todolist_project (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.5.0)
+    builder (3.2.4)
+    docile (1.4.0)
+    minitest (5.16.3)
+    minitest-reporters (1.6.0)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    rake (13.0.6)
+    ruby-progressbar (1.13.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
+    stamp (0.6.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  minitest (~> 5.16.3)
+  minitest-reporters (~> 1.6.0)
+  rake
+  simplecov (~> 0.22.0)
+  stamp
+  todolist_project!
+
+RUBY VERSION
+   ruby 3.2.2p53
+
+BUNDLED WITH
+   2.4.13

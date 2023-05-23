@@ -1,6 +1,9 @@
+require 'bundler/setup'
 require 'simplecov'
+require 'stamp'
 require 'minitest/autorun'
-require "minitest/reporters"
+require 'minitest/reporters'
+require 'date'
 
 SimpleCov.start
 Minitest::Reporters.use!
@@ -8,7 +11,6 @@ Minitest::Reporters.use!
 require_relative '../lib/todolist_project'
 
 class TodoListTest < MiniTest::Test
-
   def setup
     @todo1 = Todo.new("Buy milk")
     @todo2 = Todo.new("Clean room")
@@ -19,6 +21,16 @@ class TodoListTest < MiniTest::Test
     @list.add(@todo1)
     @list.add(@todo2)
     @list.add(@todo3)
+  end
+
+  def test_no_due_date
+    assert_nil(@todo1.due_date)
+  end
+
+  def test_due_date
+    due_date = Date.today + 3
+    @todo1.due_date = due_date
+    assert_equal(due_date, @todo1.due_date)
   end
 
   def test_to_a
@@ -126,6 +138,17 @@ class TodoListTest < MiniTest::Test
     [X] Go to gym
     OUTPUT
     @list.mark_all_done
+    assert_equal(output, @list.to_s)
+  end
+
+  def test_to_s_due_date
+    @todo1.due_date = Date.civil(2017, 4, 15)
+    output = <<~OUTPUT.chomp
+    ---- Today's Todos ----
+    [ ] Buy milk (Due: Saturday April 15)
+    [ ] Clean room
+    [ ] Go to gym
+    OUTPUT
     assert_equal(output, @list.to_s)
   end
 
